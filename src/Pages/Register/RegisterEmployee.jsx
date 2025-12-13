@@ -1,4 +1,3 @@
-// src/Pages/Auth/RegisterEmployee.jsx
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
@@ -15,11 +14,11 @@ const RegisterEmployee = () => {
       // Firebase registration
       await fbRegister(data.email, data.password);
 
-      // Employee data - password added
+      // Employee data - with password
       const employeeData = {
         name: data.name,
         email: data.email,
-        password: data.password, // <-- FIXED PASSWORD
+        password: data.password,
         dateOfBirth: data.dateOfBirth,
       };
 

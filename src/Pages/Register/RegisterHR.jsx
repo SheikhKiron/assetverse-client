@@ -1,4 +1,3 @@
-// src/Pages/Auth/RegisterHR.jsx
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
@@ -31,7 +30,7 @@ const RegisterHR = () => {
       const hrData = {
         name: data.name,
         email: data.email,
-        password: data.password, // <-- ❗ এখন password backend এ যাবে
+        password: data.password,
         companyName: data.companyName,
         companyLogo: uploadedLogoUrl,
         dateOfBirth: data.dateOfBirth,
