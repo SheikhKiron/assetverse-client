@@ -32,7 +32,7 @@ const Dashboard = () => {
   }, [user, loading]);
 
   if (loading || dbLoading) return <Spinner></Spinner>;
-  if (!userData) return <p>No user data found!</p>;
+
 
   return (
     <div className="drawer lg:drawer-open min-h-screen">
@@ -76,8 +76,8 @@ const Dashboard = () => {
             </span>
           </div>
         </nav>
+    
 
-        {/* Page content – এখানে nested route গুলো আসবে */}
         <div className="p-4">
           <Outlet />
         </div>

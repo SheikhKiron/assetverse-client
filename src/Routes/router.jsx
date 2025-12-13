@@ -17,12 +17,15 @@ import MyTeam from "../Pages/EmployeeDashboard/MyTeam";
 import Profile from "../Pages/EmployeeDashboard/Profile";
 import PrivateRouter from './PrivateRouter';
 import EditAsset from "../Pages/HRDashboard/EditAsset";
+import HrRoute from "./HrRoute";
+import Error from "../Pages/Error/Error";
 
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Root></Root>,
+    errorElement:<Error></Error>,
     children: [
       { index: true, Component: Home },
       { path: '/login', Component: Login },
@@ -41,7 +44,14 @@ export const router = createBrowserRouter([
       { path: 'assets', element: <AssetList /> },
       { path: 'add-asset', element: <AddAsset /> },
       { path: 'requests', element: <AllRequests /> },
-      { path: 'employees', element: <EmployeeList /> },
+      {
+        path: 'employees',
+        element: (
+          <HrRoute>
+            <EmployeeList />
+          </HrRoute>
+        ),
+      },
       { path: 'upgrade', element: <UpgradePackage /> },
 
       { path: 'my-assets', element: <MyAssets /> },
