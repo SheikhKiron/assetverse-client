@@ -13,7 +13,9 @@ const EditAsset = () => {
   useEffect(() => {
     const loadAsset = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/hr/assets/${id}`);
+        const res = await fetch(
+          `https://assetverse-server-nine.vercel.app/hr/assets/${id}`
+        );
         const data = await res.json();
         if (!res.ok) {
           alert(data.msg || 'Failed to load asset');
@@ -47,11 +49,14 @@ const EditAsset = () => {
         productQuantity: Number(formData.productQuantity),
       };
 
-      const res = await fetch(`http://localhost:5000/hr/assets/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+      const res = await fetch(
+        `https://assetverse-server-nine.vercel.app/hr/assets/${id}`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        }
+      );
 
       const result = await res.json();
       if (!res.ok) throw new Error(result.msg || 'Error updating asset');

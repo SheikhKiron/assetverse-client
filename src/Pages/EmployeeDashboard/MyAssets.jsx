@@ -20,7 +20,7 @@ const MyAssets = () => {
       setErrMsg('');
 
       const res = await fetch(
-        `http://localhost:5000/employee/requests/${user.email}`
+        `https://assetverse-server-nine.vercel.app/employee/requests/${user.email}`
       );
       if (!res.ok) {
         const text = await res.text();
@@ -55,7 +55,7 @@ const MyAssets = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/employee/requests/${id}/return`,
+        `https://assetverse-server-nine.vercel.app/employee/requests/${id}/return`,
         { method: 'PATCH' }
       );
       const data = await res.json();

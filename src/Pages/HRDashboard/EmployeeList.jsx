@@ -16,7 +16,7 @@ const EmployeeList = () => {
       setErrMsg('');
 
       const res = await fetch(
-        `http://localhost:5000/hr/employees?hrEmail=${appUser.email}`
+        `https://assetverse-server-nine.vercel.app/hr/employees?hrEmail=${appUser.email}`
       );
 
       if (!res.ok) {

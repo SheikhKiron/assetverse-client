@@ -15,7 +15,9 @@ const MyTeam = () => {
     setLoading(true);
     setErrMsg('');
 
-    fetch(`http://localhost:5000/employee/my-team/${user.email}`)
+    fetch(
+      `https://assetverse-server-nine.vercel.app/employee/my-team/${user.email}`
+    )
       .then(res => {
         if (!res.ok) {
           throw new Error('Failed to load team data');

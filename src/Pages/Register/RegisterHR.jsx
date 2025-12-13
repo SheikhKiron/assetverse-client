@@ -36,7 +36,10 @@ const RegisterHR = () => {
         dateOfBirth: data.dateOfBirth,
       };
 
-      await axios.post('http://localhost:5000/auth/register/hr', hrData);
+      await axios.post(
+        'https://assetverse-server-nine.vercel.app/auth/register/hr',
+        hrData
+      );
 
       alert('HR Registered Successfully!');
       reset();

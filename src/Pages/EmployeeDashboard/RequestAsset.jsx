@@ -17,7 +17,9 @@ const RequestAsset = () => {
         setLoading(true);
         setErrMsg('');
 
-        const res = await fetch('http://localhost:5000/hr/assets');
+        const res = await fetch(
+          'https://assetverse-server-nine.vercel.app/hr/assets'
+        );
         const data = await res.json();
         if (!res.ok) throw new Error(data.msg || 'Failed to load assets');
 
@@ -71,11 +73,14 @@ const RequestAsset = () => {
         note,
       };
 
-      const res = await fetch('http://localhost:5000/employee/requests', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+      const res = await fetch(
+        'https://assetverse-server-nine.vercel.app/employee/requests',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        }
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || 'Failed to create request');
 

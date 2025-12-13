@@ -5,21 +5,15 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-
   signOut,
 } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.config';
 import { AuthContext } from './AuthContext';
 
-
-
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null); 
+  const [user, setUser] = useState(null);
   const [appUser, setAppUser] = useState(null);
-
-
-
 
   const register = (email, password) => {
     setLoading(true);
@@ -28,7 +22,6 @@ const AuthProvider = ({ children }) => {
     );
   };
 
-  
   const login = (email, password) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password).finally(() =>
@@ -42,7 +35,6 @@ const AuthProvider = ({ children }) => {
     return signOut(auth).finally(() => setLoading(false));
   };
 
-  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
       setUser(currentUser);
@@ -50,7 +42,7 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         try {
           const res = await fetch(
-            `http://localhost:5000/users/by-email/${currentUser.email}`
+            `https://assetverse-server-nine.vercel.app/users/by-email/${currentUser.email}`
           );
           if (res.ok) {
             const data = await res.json();
@@ -73,13 +65,12 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const AuthInfo = {
-    user, 
-    appUser, 
+    user,
+    appUser,
     loading,
     register,
     login,
     logout,
-  
   };
 
   return (

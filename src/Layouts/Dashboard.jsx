@@ -5,8 +5,8 @@ import useAuth from '../hooks/useAuth';
 import Spinner from '../Components/Spinner';
 
 const Dashboard = () => {
-  const { user, loading } = useAuth(); 
-  const [userData, setUserData] = useState(null); 
+  const { user, loading } = useAuth();
+  const [userData, setUserData] = useState(null);
   const [dbLoading, setDbLoading] = useState(true);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Dashboard = () => {
     const loadData = async () => {
       try {
         const res = await fetch(
-          `http://localhost:5000/users/by-email/${user.email}`
+          `https://assetverse-server-nine.vercel.app/users/by-email/${user.email}`
         );
         const data = await res.json();
 

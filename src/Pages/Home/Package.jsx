@@ -1,32 +1,34 @@
 import React, { useEffect, useState } from 'react';
 
 const Package = () => {
-   const [packages, setPackages] = useState([]);
-   const [loading, setLoading] = useState(true);
-   const [errMsg, setErrMsg] = useState('');
+  const [packages, setPackages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errMsg, setErrMsg] = useState('');
 
-   useEffect(() => {
-     const loadPackages = async () => {
-       try {
-         setLoading(true);
-         setErrMsg('');
-         const res = await fetch('http://localhost:5000/packages');
-         const data = await res.json();
-         if (!res.ok) {
-           throw new Error(data.msg || 'Failed to load packages');
-         }
-         setPackages(data);
-       } catch (err) {
-         console.error(err);
-         setErrMsg(err.message);
-         setPackages([]);
-       } finally {
-         setLoading(false);
-       }
-     };
+  useEffect(() => {
+    const loadPackages = async () => {
+      try {
+        setLoading(true);
+        setErrMsg('');
+        const res = await fetch(
+          'https://assetverse-server-nine.vercel.app/packages'
+        );
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data.msg || 'Failed to load packages');
+        }
+        setPackages(data);
+      } catch (err) {
+        console.error(err);
+        setErrMsg(err.message);
+        setPackages([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-     loadPackages();
-   }, []);
+    loadPackages();
+  }, []);
   return (
     <section className="mb-10">
       <h2 className="text-3xl font-bold text-center text-[#1E5631] mb-4">

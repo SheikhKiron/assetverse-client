@@ -23,11 +23,14 @@ const AddAsset = () => {
         companyName: appUser.companyName,
       };
 
-      const res = await fetch('http://localhost:5000/hr/assets', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+      const res = await fetch(
+        'https://assetverse-server-nine.vercel.app/hr/assets',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        }
+      );
 
       const result = await res.json();
       if (!res.ok) throw new Error(result.msg || 'Error adding asset');

@@ -23,7 +23,7 @@ const RegisterEmployee = () => {
       };
 
       await axios.post(
-        'http://localhost:5000/auth/register/employee',
+        'https://assetverse-server-nine.vercel.app/auth/register/employee',
         employeeData
       );
 

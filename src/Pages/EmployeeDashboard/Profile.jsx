@@ -10,7 +10,7 @@ const Profile = () => {
     try {
       setLoading(true);
       const res = await fetch(
-        `http://localhost:5000/users/by-email/${user.email}`
+        `https://assetverse-server-nine.vercel.app/users/by-email/${user.email}`
       );
       const data = await res.json();
       setProfile(data.user);
@@ -34,11 +34,14 @@ const Profile = () => {
   const handleSave = async e => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/users/update-profile', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(profile),
-      });
+      const res = await fetch(
+        'https://assetverse-server-nine.vercel.app/users/update-profile',
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(profile),
+        }
+      );
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || 'Update failed');
       alert('Profile updated!');

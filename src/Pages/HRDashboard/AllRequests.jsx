@@ -9,7 +9,9 @@ const AllRequests = () => {
   const loadRequests = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:5000/hr/requests');
+      const res = await fetch(
+        'https://assetverse-server-nine.vercel.app/hr/requests'
+      );
       const data = await res.json();
       setRequests(data);
     } catch (err) {
@@ -28,8 +30,8 @@ const AllRequests = () => {
     try {
       const url =
         action === 'approve'
-          ? `http://localhost:5000/hr/requests/${id}/approve`
-          : `http://localhost:5000/hr/requests/${id}/reject`;
+          ? `https://assetverse-server-nine.vercel.app/hr/requests/${id}/approve`
+          : `https://assetverse-server-nine.vercel.app/hr/requests/${id}/reject`;
 
       const res = await fetch(url, { method: 'PATCH' });
       const data = await res.json();

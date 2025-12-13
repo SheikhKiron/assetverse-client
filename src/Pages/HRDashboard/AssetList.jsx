@@ -11,7 +11,9 @@ const AssetList = () => {
   const loadAssets = async () => {
     try {
       setLoading(true);
-      const res = await fetch('http://localhost:5000/hr/assets'); 
+      const res = await fetch(
+        'https://assetverse-server-nine.vercel.app/hr/assets'
+      );
       const data = await res.json();
       setAssets(data);
     } catch (err) {
@@ -29,7 +31,7 @@ const AssetList = () => {
   const handleDelete = async id => {
     if (!window.confirm('Are you sure you want to delete this asset?')) return;
     try {
-      await fetch(`http://localhost:5000/hr/assets/${id}`, {
+      await fetch(`https://assetverse-server-nine.vercel.app/hr/assets/${id}`, {
         method: 'DELETE',
       });
       setAssets(prev => prev.filter(a => a._id !== id));

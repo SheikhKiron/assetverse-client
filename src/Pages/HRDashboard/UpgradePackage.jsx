@@ -29,7 +29,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
 
       // 1) Backend theke PaymentIntent create koro
       const intentRes = await fetch(
-        'http://localhost:5000/create-payment-intent',
+        'https://assetverse-server-nine.vercel.app/create-payment-intent',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -71,14 +71,17 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
       }
 
       // 3) Payment success --> backend e package upgrade call
-      const upgradeRes = await fetch('http://localhost:5000/hr/upgrade', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          hrEmail,
-          packageName: selectedPackage.name,
-        }),
-      });
+      const upgradeRes = await fetch(
+        'https://assetverse-server-nine.vercel.app/hr/upgrade',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            hrEmail,
+            packageName: selectedPackage.name,
+          }),
+        }
+      );
 
       const upgradeData = await upgradeRes.json();
       if (!upgradeRes.ok) {
@@ -155,7 +158,9 @@ const UpgradePackage = () => {
       try {
         setLoading(true);
         setPkgError('');
-        const res = await fetch('http://localhost:5000/packages');
+        const res = await fetch(
+          'https://assetverse-server-nine.vercel.app/packages'
+        );
         const data = await res.json();
         if (!res.ok) {
           throw new Error(data.msg || 'Failed to load packages');
