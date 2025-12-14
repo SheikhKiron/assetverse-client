@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 const RequestAsset = () => {
-  const { appUser } = useAuth(); // backend user, employee
+  const { appUser } = useAuth();
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState('');

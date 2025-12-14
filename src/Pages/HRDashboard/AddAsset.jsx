@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
 
 const AddAsset = () => {
-  const { appUser } = useAuth(); // backend user: HR (email, companyName সহ)
+  const { appUser } = useAuth(); 
   const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async data => {

@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 
 const MyAssets = () => {
-  const { user } = useAuth(); // Firebase user (email)
+  const { user } = useAuth();
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
   const [errMsg, setErrMsg] = useState('');
@@ -39,7 +39,7 @@ const MyAssets = () => {
 
   useEffect(() => {
     loadMyRequests();
-  }, [user]); // user বদলালে আবার load
+  }, [user]);
 
   const filtered = requests.filter(req => {
     const matchName = req.assetName
