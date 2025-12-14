@@ -2,13 +2,14 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const RegisterHR = () => {
   const { register: fbRegister } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState('');
   const imgbbKey = import.meta.env.VITE_IMGBB_KEY;
-
+const navigate=useNavigate()
   const onSubmit = async data => {
     setError('');
     try {
@@ -42,6 +43,7 @@ const RegisterHR = () => {
       );
 
       alert('HR Registered Successfully!');
+      navigate('/');
       reset();
     } catch (err) {
       console.error(err);

@@ -2,12 +2,13 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const RegisterEmployee = () => {
   const { register: fbRegister } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const [error, setError] = useState('');
-
+const navigate=useNavigate()
   const onSubmit = async data => {
     setError('');
     try {
@@ -28,6 +29,7 @@ const RegisterEmployee = () => {
       );
 
       alert('Employee Registered Successfully!');
+      navigate('/')
       reset();
     } catch (err) {
       console.error(err);
