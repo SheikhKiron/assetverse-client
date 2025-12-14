@@ -20,13 +20,14 @@ import EditAsset from "../Pages/HRDashboard/EditAsset";
 import HrRoute from "./HrRoute";
 import Error from "../Pages/Error/Error";
 import Analytics from './../Pages/HRDashboard/Analytics';
+import EmployeRoute from "./EmployeRoute";
 
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <Root></Root>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       { index: true, Component: Home },
       { path: '/login', Component: Login },
@@ -42,10 +43,38 @@ export const router = createBrowserRouter([
       </PrivateRouter>
     ),
     children: [
-      { path: 'assets', element: <AssetList /> },
-      { path: 'analytics', element: <Analytics /> },
-      { path: 'add-asset', element: <AddAsset /> },
-      { path: 'requests', element: <AllRequests /> },
+      {
+        path: 'assets',
+        element: (
+          <HrRoute>
+            <AssetList />
+          </HrRoute>
+        ),
+      },
+      {
+        path: 'analytics',
+        element: (
+          <HrRoute>
+            <Analytics />
+          </HrRoute>
+        ),
+      },
+      {
+        path: 'add-asset',
+        element: (
+          <HrRoute>
+            <AddAsset />
+          </HrRoute>
+        ),
+      },
+      {
+        path: 'requests',
+        element: (
+          <HrRoute>
+            <AllRequests />
+          </HrRoute>
+        ),
+      },
       {
         path: 'employees',
         element: (
@@ -54,14 +83,49 @@ export const router = createBrowserRouter([
           </HrRoute>
         ),
       },
-      { path: 'upgrade', element: <UpgradePackage /> },
+      {
+        path: 'upgrade',
+        element: (
+          <HrRoute>
+            <UpgradePackage />
+          </HrRoute>
+        ),
+      },
 
-      { path: 'my-assets', element: <MyAssets /> },
-      { path: 'request-asset', element: <RequestAsset /> },
-      { path: 'my-team', element: <MyTeam /> },
+      {
+        path: 'my-assets',
+        element: (
+          <EmployeRoute>
+            <MyAssets />
+          </EmployeRoute>
+        ),
+      },
+      {
+        path: 'request-asset',
+        element: (
+          <EmployeRoute>
+            <RequestAsset />
+          </EmployeRoute>
+        ),
+      },
+      {
+        path: 'my-team',
+        element: (
+          <EmployeRoute>
+            <MyTeam />
+          </EmployeRoute>
+        ),
+      },
 
       { path: 'profile', element: <Profile /> },
-      { path: 'edit-asset/:id', element: <EditAsset /> },
+      {
+        path: 'edit-asset/:id',
+        element: (
+          <HrRoute>
+            <EditAsset />
+          </HrRoute>
+        ),
+      },
     ],
   },
 ]);
