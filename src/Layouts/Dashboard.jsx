@@ -76,7 +76,6 @@ const Dashboard = () => {
             </span>
           </div>
         </nav>
-    
 
         <div className="p-4">
           <Outlet />
@@ -112,6 +111,9 @@ const Dashboard = () => {
             {/* HR MENU */}
             {userData.role === 'hr' && (
               <>
+                <li>
+                  <NavLink to="/dashboard/analytics">Analytics</NavLink>
+                </li>
                 <li>
                   <NavLink to="/dashboard/assets">Asset List</NavLink>
                 </li>

@@ -19,6 +19,7 @@ import PrivateRouter from './PrivateRouter';
 import EditAsset from "../Pages/HRDashboard/EditAsset";
 import HrRoute from "./HrRoute";
 import Error from "../Pages/Error/Error";
+import Analytics from './../Pages/HRDashboard/Analytics';
 
 
 export const router = createBrowserRouter([
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
     ),
     children: [
       { path: 'assets', element: <AssetList /> },
+      { path: 'analytics', element: <Analytics /> },
       { path: 'add-asset', element: <AddAsset /> },
       { path: 'requests', element: <AllRequests /> },
       {
