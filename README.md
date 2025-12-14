@@ -1,17 +1,52 @@
-# React + Vite
+# AssetVerse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Corporate Asset Management System**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
+[Live Site URL](#)  
 
-## React Compiler
+## Project Overview
+AssetVerse is a B2B HR & Asset Management platform that helps companies efficiently manage their physical assets and track which employee has which equipment. It streamlines asset assignment, returns, employee management, and subscription-based package upgrades.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Key Features
+- HR Manager & Employee role-based access
+- HR can add, edit, delete, and assign assets
+- Employees can request and return assets (if returnable)
+- Automatic employee-company affiliation on first approved request
+- Package management with Stripe payment integration
+- Analytics: Returnable vs Non-returnable assets, Top requested assets
+- Employee dashboard: My Assets, My Team, Profile
+- Pagination support for asset listing
+- JWT authentication and role-based middleware
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# assetverse-client
+---
+
+## Tech Stack
+- **Frontend:** React, DaisyUI, Framer Motion
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Authentication:** JWT, bcrypt
+- **Payment Integration:** Stripe
+- **Hosting:** Vercel
+- **Others:** CORS, dotenv
+
+---
+
+## Setup Instructions
+1. Clone the repositories (client & server)
+2. Run `npm install` in both directories
+3. Create `.env` files for backend:
+    ```
+    PORT=5000
+    MONGO_URI=<your_mongo_connection_string>
+    JWT_SECRET=<your_jwt_secret>
+    STRIPE_SECRET_KEY=<your_stripe_secret_key>
+    ```
+
+
+
+
