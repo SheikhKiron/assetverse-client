@@ -10,7 +10,7 @@ import {
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
-// ===== Payment Form (Modal er vitore) =====
+
 const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -27,7 +27,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
     try {
       setLoading(true);
 
-      // 1) Backend theke PaymentIntent create koro
+   
       const intentRes = await fetch(
         'https://assetverse-server-nine.vercel.app/create-payment-intent',
         {
@@ -47,7 +47,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
 
       const clientSecret = intentData.clientSecret;
 
-      // 2) Stripe diye payment confirm koro
+     
       const card = elements.getElement(CardElement);
       const { error, paymentIntent } = await stripe.confirmCardPayment(
         clientSecret,
@@ -70,7 +70,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
         throw new Error('Payment not successful');
       }
 
-      // 3) Payment success --> backend e package upgrade call
+    
       const upgradeRes = await fetch(
         'https://assetverse-server-nine.vercel.app/hr/upgrade',
         {
@@ -144,9 +144,9 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
   );
 };
 
-// ===== Main UpgradePackage Page =====
+
 const UpgradePackage = () => {
-  const { appUser } = useAuth(); // AuthProvider theke backend user
+  const { appUser } = useAuth(); 
   const [packages, setPackages] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pkgError, setPkgError] = useState('');
@@ -257,8 +257,7 @@ const UpgradePackage = () => {
                 hrEmail={appUser.email}
                 onClose={() => setSelectedPkg(null)}
                 onSuccess={updated => {
-                  // চাইলে frontend-এর appUser state আপডেট করতে পারো
-                  // এখন শুধু alert দিয়ে রেখেছি; চাইলে এখানে refresh logic বসাবে
+                
                   console.log('Upgraded:', updated);
                 }}
               />

@@ -1,15 +1,15 @@
-// src/Pages/HRDashboard/EditAsset.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
 
 const EditAsset = () => {
-  const { id } = useParams(); // /dashboard/edit-asset/:id থেকে আসবে
+  const { id } = useParams(); 
   const { register, handleSubmit, reset } = useForm();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // পুরনো ডাটা লোড করা
+
   useEffect(() => {
     const loadAsset = async () => {
       try {
@@ -22,7 +22,7 @@ const EditAsset = () => {
           return;
         }
 
-        // ফর্মে পুরনো value বসিয়ে দাও
+      
         reset({
           productName: data.productName,
           productImage: data.productImage,
@@ -62,7 +62,7 @@ const EditAsset = () => {
       if (!res.ok) throw new Error(result.msg || 'Error updating asset');
 
       alert('Asset updated successfully!');
-      navigate('/dashboard/assets'); // list পেজে ফেরত
+      navigate('/dashboard/assets'); 
     } catch (err) {
       console.error(err);
       alert(err.message);
