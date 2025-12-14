@@ -9,14 +9,16 @@ import Contact from './Contact';
 
 const Home = () => {
   return (
-    <div className=''> 
+    <div className="">
       <Hero></Hero>
-      <About></About>
-      <Package></Package>
-      <Features></Features>
-      <Works></Works>
-      <Faq></Faq>
-      <Contact></Contact>
+      <div className='w-11/12 mx-auto'>
+        <About></About>
+        <Package></Package>
+        <Features></Features>
+        <Works></Works>
+        <Faq></Faq>
+      </div>
+        <Contact></Contact>
     </div>
   );
 };
