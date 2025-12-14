@@ -18,16 +18,21 @@ const RequestAsset = () => {
         setLoading(true);
         setErrMsg('');
 
+     
         const res = await fetch(
-          'https://assetverse-server-nine.vercel.app/hr/assets'
+          'https://assetverse-server-nine.vercel.app/hr/assets?page=1&limit=100'
         );
         const data = await res.json();
         if (!res.ok) throw new Error(data.msg || 'Failed to load assets');
 
-        const list = Array.isArray(data) ? data : [];
+       
+        const list = Array.isArray(data.data) ? data.data : [];
+
+      
         const available = list.filter(
           a => (a.availableQuantity ?? a.productQuantity ?? 0) > 0
         );
+
         setAssets(available);
       } catch (err) {
         console.error(err);
@@ -42,7 +47,7 @@ const RequestAsset = () => {
 
   const openModal = asset => {
     if (!appUser || appUser.role !== 'employee') {
-      toast.success('Only employees can request assets.');
+      toast.error('Only employees can request assets.');
       return;
     }
     setSelectedAsset(asset);
