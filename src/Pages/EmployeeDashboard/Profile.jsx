@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const { user } = useAuth();
@@ -44,10 +45,10 @@ const Profile = () => {
       );
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || 'Update failed');
-      alert('Profile updated!');
+      toast.success('Profile updated!');
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     }
   };
 

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router';
+import { toast } from 'react-toastify';
 
 const EditAsset = () => {
   const { id } = useParams(); 
@@ -18,7 +19,7 @@ const EditAsset = () => {
         );
         const data = await res.json();
         if (!res.ok) {
-          alert(data.msg || 'Failed to load asset');
+          toast(data.msg || 'Failed to load asset');
           return;
         }
 
@@ -31,7 +32,7 @@ const EditAsset = () => {
         });
       } catch (err) {
         console.error(err);
-        alert('Error loading asset');
+        toast.error('Error loading asset');
       } finally {
         setLoading(false);
       }
@@ -61,11 +62,11 @@ const EditAsset = () => {
       const result = await res.json();
       if (!res.ok) throw new Error(result.msg || 'Error updating asset');
 
-      alert('Asset updated successfully!');
+      toast.success('Asset updated successfully!');
       navigate('/dashboard/assets'); 
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     }
   };
 

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const RegisterEmployee = () => {
   const { register: fbRegister } = useAuth();
@@ -28,7 +29,7 @@ const navigate=useNavigate()
         employeeData
       );
 
-      alert('Employee Registered Successfully!');
+      toast.success('Employee Registered Successfully!');
       navigate('/')
       reset();
     } catch (err) {

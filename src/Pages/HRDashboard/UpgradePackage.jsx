@@ -7,6 +7,7 @@ import {
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
+import { toast } from 'react-toastify';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -20,7 +21,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     if (!stripe || !elements) {
-      alert('Stripe is not loaded yet.');
+      toast('Stripe is not loaded yet.');
       return;
     }
 
@@ -88,7 +89,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
         throw new Error(upgradeData.msg || 'Upgrade failed');
       }
 
-      alert(
+      toast(
         `Payment successful! Upgraded to ${upgradeData.packageName} (limit: ${upgradeData.employeeLimit})`
       );
 
@@ -96,7 +97,7 @@ const PaymentForm = ({ selectedPackage, hrEmail, onClose, onSuccess }) => {
       onClose && onClose();
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }

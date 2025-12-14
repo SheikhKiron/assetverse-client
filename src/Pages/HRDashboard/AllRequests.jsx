@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const AllRequests = () => {
   const { user } = useAuth();
@@ -41,7 +42,7 @@ const AllRequests = () => {
       loadRequests();
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     }
   };
 

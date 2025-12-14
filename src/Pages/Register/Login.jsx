@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
 import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const Login = () => {
   const { login } = useAuth();
@@ -10,10 +11,10 @@ const Login = () => {
   const onSubmit = async data => {
     try {
       await login(data.email, data.password);
-      alert('Login Success!');
+      toast.success('Login Success!');
       navigate('/');
     } catch (error) {
-      alert('Invalid email or password');
+      toast.error('Invalid email or password');
     }
   };
 

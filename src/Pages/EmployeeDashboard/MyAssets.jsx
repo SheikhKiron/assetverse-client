@@ -1,6 +1,7 @@
 // src/Pages/EmployeeDashboard/MyAssets.jsx
 import React, { useEffect, useRef, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const MyAssets = () => {
   const { user } = useAuth();
@@ -61,11 +62,11 @@ const MyAssets = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || 'Return failed');
 
-      alert('Asset returned successfully!');
+      toast.success('Asset returned successfully!');
       loadMyRequests();
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     }
   };
 

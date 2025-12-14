@@ -2,15 +2,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router';
 
 const AddAsset = () => {
   const { appUser } = useAuth(); 
   const { register, handleSubmit, reset } = useForm();
-
+const navigate=useNavigate()
   const onSubmit = async data => {
     try {
       if (!appUser || appUser.role !== 'hr') {
-        alert('Only HR can add assets.');
+        toast('Only HR can add assets.');
         return;
       }
 
@@ -35,11 +37,12 @@ const AddAsset = () => {
       const result = await res.json();
       if (!res.ok) throw new Error(result.msg || 'Error adding asset');
 
-      alert('Asset added successfully!');
+      toast.success('Asset added successfully!');
+navigate('/dashboard/assets');
       reset();
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     }
   };
 

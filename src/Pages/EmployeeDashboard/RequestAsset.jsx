@@ -1,6 +1,7 @@
 // src/Pages/EmployeeDashboard/RequestAsset.jsx
 import React, { useEffect, useState } from 'react';
 import useAuth from '../../hooks/useAuth';
+import { toast } from 'react-toastify';
 
 const RequestAsset = () => {
   const { appUser } = useAuth();
@@ -41,7 +42,7 @@ const RequestAsset = () => {
 
   const openModal = asset => {
     if (!appUser || appUser.role !== 'employee') {
-      alert('Only employees can request assets.');
+      toast.success('Only employees can request assets.');
       return;
     }
     setSelectedAsset(asset);
@@ -84,7 +85,7 @@ const RequestAsset = () => {
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg || 'Failed to create request');
 
-      alert('Request submitted successfully!');
+      toast.success('Request submitted successfully!');
       closeModal();
     } catch (err) {
       console.error(err);
